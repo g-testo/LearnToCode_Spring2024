@@ -28,14 +28,14 @@ public class Main {
         System.out.println("Please provide the following information: ");
 
         System.out.print("First Name: ");
-        String fName = scanner.nextLine().trim();
+        String fName = scanner.nextLine().trim() + " ";
 
         System.out.print("Middle Name: ");
         String mName = scanner.nextLine().trim();
         String displayedMName = "";
         if(!mName.equals("")){
 //            displayedMName = " " + String.valueOf(mName.charAt(0)) + ". ";
-            displayedMName = " " + mName.substring(0, 1) + ". ";
+            displayedMName = mName.substring(0, 1) + ". ";
         }
 
         System.out.print("Last Name: ");
