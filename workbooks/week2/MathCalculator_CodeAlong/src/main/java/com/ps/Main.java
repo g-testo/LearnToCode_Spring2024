@@ -38,22 +38,21 @@ class Main {
         int numberTwo = scanner.nextInt();
 
         System.out.println("Op: " + operation + ", num1 " + numberOne + ", num2 " + numberTwo);
-
         switch (operation) {
             case 1:
-                System.out.println("Your result is: " + (numberOne + numberTwo));
+                printResult(numberOne + numberTwo);
                 break;
             case 2:
-                System.out.println("Your result is: " + (numberOne - numberTwo));
+                printResult(numberOne - numberTwo);
                 break;
             case 3:
-                System.out.println("Your result is: " + (numberOne * numberTwo));
+                printResult(numberOne * numberTwo);
                 break;
             case 4:
-                System.out.println("Your result is: " + (numberOne / numberTwo));
+                printResult(numberOne / numberTwo);
                 break;
             case 5:
-                System.out.println("Your result is: " + (numberOne % numberTwo));
+                printResult(numberOne % numberTwo);
                 break;
             default:
                 System.out.println("Operation not found");
@@ -63,5 +62,9 @@ class Main {
 
     public static void runScientificCalculator() {
         System.out.println("Run scientific calculator");
+    }
+
+    public static void printResult(int result){
+        System.out.println("Your result is: " + result + ". Would you like to do another operation?");
     }
 }
