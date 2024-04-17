@@ -3,16 +3,12 @@ package com.ps;
 public class Car {
     private String make;
     private String model;
-    private float price;
-    private int numOfSales;
-    private boolean isNew;
+    private int timesHonked;
 
-    public Car(String make, String model, float price, int numOfSales, boolean isNew) {
+    public Car(String make, String model) {
         this.make = make;
         this.model = model;
-        this.price = price;
-        this.numOfSales = numOfSales;
-        this.isNew = isNew;
+        timesHonked = 0;
     }
 
     public String getMake() {
@@ -31,29 +27,23 @@ public class Car {
         this.model = model;
     }
 
-    public float getPrice() {
-        return price;
+    public void honk(){
+        switch(this.timesHonked){
+            case 0:
+                System.out.println("HOOOOOOOONNNNKKKKK!!!!!!");
+                break;
+            case 1:
+                System.out.println("Hooooooonnnnkkkk!!!");
+                break;
+            case 2:
+                System.out.println("hoonnkkk");
+                break;
+            default:
+                System.out.println("...");
+        }
+        this.timesHonked++;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public int getNumOfSales() {
-        return numOfSales;
-    }
-
-    public void setNumOfSales(int numOfSales) {
-        this.numOfSales = numOfSales;
-    }
-
-    public boolean isNew() {
-        return isNew;
-    }
-
-    public void setIsNew(boolean isNew) {
-        this.isNew = isNew;
-    }
 }
 
 
