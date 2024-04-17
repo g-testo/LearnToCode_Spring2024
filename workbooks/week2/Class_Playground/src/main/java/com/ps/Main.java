@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Person person1 = new Person();
         person1.setName("Gregorio");
+
         person1.setAge(30);
 
         Person person2 = new Person();
