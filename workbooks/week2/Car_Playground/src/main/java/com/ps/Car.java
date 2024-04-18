@@ -4,11 +4,13 @@ public class Car {
     private String make;
     private String model;
     private int timesHonked;
+    private int odometer;
 
     public Car(String make, String model) {
         this.make = make;
         this.model = model;
-        timesHonked = 0;
+        this.timesHonked = 0;
+        this.odometer = 0;
     }
 
     public String getMake() {
@@ -25,6 +27,16 @@ public class Car {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public void drive(){
+        this.odometer += 5;
+    }
+    public void drive(int millage){
+        this.odometer += millage;
+    }
+    public void drive(int speedMph, int hoursDriven){
+        this.odometer = speedMph * hoursDriven;
     }
 
     public void honk(){
