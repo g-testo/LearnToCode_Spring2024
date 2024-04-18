@@ -5,7 +5,6 @@ public class Car {
     private String model;
     private int timesHonked;
     private int odometer;
-
     public Car(String make, String model) {
         this.make = make;
         this.model = model;
