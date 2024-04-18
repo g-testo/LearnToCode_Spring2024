@@ -11,5 +11,8 @@ public class Main {
         car1.honk();
         car1.honk();
 
+        Car car2 = new Car();
+        car2.setMake("Honda");
+
     }
 }

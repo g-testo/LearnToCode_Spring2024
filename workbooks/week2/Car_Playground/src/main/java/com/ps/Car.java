@@ -5,6 +5,16 @@ public class Car {
     private String model;
     private int timesHonked;
     private int odometer;
+
+    public Car(){}
+
+    public Car(int odometer){
+        this.make = "NA";
+        this.model = "NA";
+        this.timesHonked = 0;
+        this.odometer = odometer;
+    }
+
     public Car(String make, String model) {
         this.make = make;
         this.model = model;
