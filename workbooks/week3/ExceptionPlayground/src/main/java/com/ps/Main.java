@@ -13,7 +13,8 @@ public class Main {
         try {
             System.out.println(names[index]);
         } catch(Exception e){
-            System.out.println(e);
+            System.out.println("That name doesn't exist. Please run the program again...");
+            e.printStackTrace();
         }
 
         System.out.println("Rest of the program");
