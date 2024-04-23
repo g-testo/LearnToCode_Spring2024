@@ -27,7 +27,7 @@ public class Main {
                         employee.calcGrossPay()
                 );
             }
-
+            bufReader.close();
         } catch(Exception e){
             e.printStackTrace();
         }
