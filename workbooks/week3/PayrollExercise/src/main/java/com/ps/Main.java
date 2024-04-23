@@ -1,9 +1,6 @@
 package com.ps;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.Arrays;
-import java.util.regex.Pattern;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,15 +18,35 @@ public class Main {
 
                 Employee employee = new Employee(id, name, hoursWorked, payRate);
 
-                System.out.printf("Employee ID: %d, Name: %s, Gross Pay: %.2f \n",
+                writeToFile("formattedEmployeeData.csv", String.format("%d,%s,%.2f\n",
+                        employee.getEmployeeId(),
+                        employee.getName(),
+                        employee.calcGrossPay()
+                ));
+
+                System.out.printf("Printed: Employee ID: %d, Name: %s, Gross Pay: %.2f \n",
                         employee.getEmployeeId(),
                         employee.getName(),
                         employee.calcGrossPay()
                 );
             }
+            System.out.println("Printed to file successfully...");
+
             bufReader.close();
         } catch(Exception e){
+            System.out.println("Error...");
             e.printStackTrace();
+        }
+    }
+
+    public static void writeToFile(String path, String str){
+        try {
+            BufferedWriter bufWriter = new BufferedWriter(new FileWriter(path, true));
+            bufWriter.write(str);
+            bufWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
