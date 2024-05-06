@@ -1,9 +1,9 @@
 package com.ps;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println("Hello world!");
 
         // Understand the problem
         // Devise a plan
@@ -58,10 +58,6 @@ public class Main {
                     // QUIT
 
 
-
-
-
-
         // Categories
             //Aces	Any combination	The sum of dice with the number 1
             //Twos	Any combination	The sum of dice with the number 2
@@ -80,6 +76,95 @@ public class Main {
         // Dices
 
         // -- Devise a plan --
+
+        Scanner scanner = new Scanner(System.in);
+
+        int mainMenuCommand;
+        do {
+            // -- Code! --
+            System.out.println("Let's play some Yahtzee!");
+            System.out.println("What would you like to do?");
+            System.out.println("1) ROLL");
+            System.out.println("2) QUIT");
+
+            mainMenuCommand = scanner.nextInt();
+
+            switch (mainMenuCommand) {
+                case 1:
+
+                    int subMenuCommand;
+                    do {
+                        System.out.println("Dice have been rolled");
+                        System.out.println("You rolled the following: 2 1 5 3 2");
+                        System.out.println("What would you like to do next?");
+                        System.out.println("1) Choose dice to keep");
+                        System.out.println("2) Reroll unsaved dice");
+                        System.out.println("3) End round and choose category");
+                        System.out.println("4) BACK");
+
+                        subMenuCommand = scanner.nextInt();
+                        switch (subMenuCommand) {
+                            case 1:
+
+                                String keepDiceMenuCommand;
+
+                                do{
+                                    System.out.println("Saved: ");
+                                    System.out.println("Unsaved: (A)2 (B)1 (C)5 (D)3 (E)2 (k)eep");
+                                    System.out.println("What die would you like to keep?");
+                                    keepDiceMenuCommand = scanner.nextLine();
+
+                                    switch (keepDiceMenuCommand.toLowerCase()){
+                                        case "a":
+                                            System.out.println("You kept 2");
+                                            break;
+                                        case "b":
+                                            System.out.println("You kept 1");
+                                            break;
+                                        case "c":
+                                            System.out.println("You kept 5");
+                                            break;
+                                        case "d":
+                                            System.out.println("You kept 3");
+                                            break;
+                                        case "e":
+                                            System.out.println("You kept 2");
+                                            break;
+                                        case "k":
+                                            System.out.println("Back...");
+                                            break;
+                                        default:
+                                            System.out.println("Command not found");
+                                    }
+
+                                } while (keepDiceMenuCommand.equalsIgnoreCase("k"));
+
+                                break;
+                            case 2:
+                                System.out.println("You rerolled");
+                                break;
+                            case 3:
+                                System.out.println("The round is over, please choose a category...");
+                                // Show categories to choose from
+                                break;
+                            case 4:
+                                System.out.println("Back to the main menu...");
+                                break;
+                            default:
+                                System.out.println("Command not found");
+                        }
+                    } while (subMenuCommand != 4);
+
+                    break;
+                case 2:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Command not found");
+            }
+        }while(mainMenuCommand != 2);
+
+        // -- Code! --
 
 
     }
