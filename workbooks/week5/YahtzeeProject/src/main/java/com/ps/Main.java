@@ -32,6 +32,7 @@ public class Main {
         // -- Devise a plan --
 
         // Keep track of...
+            // Class: Game
             // -Current dice
             // -Saved dice
             // -Times dice rolled
@@ -103,41 +104,43 @@ public class Main {
                         System.out.println("4) BACK");
 
                         subMenuCommand = scanner.nextInt();
+
                         switch (subMenuCommand) {
                             case 1:
 
-                                String keepDiceMenuCommand;
+                                int keepDiceMenuCommand;
 
                                 do{
                                     System.out.println("Saved: ");
-                                    System.out.println("Unsaved: (A)2 (B)1 (C)5 (D)3 (E)2 (k)eep");
+                                    System.out.println("Unsaved: \n1) 2 \n2) 1 \n3) 5 \n4) 3 \n5) 2 \n6) KEEP ALL");
                                     System.out.println("What die would you like to keep?");
-                                    keepDiceMenuCommand = scanner.nextLine();
 
-                                    switch (keepDiceMenuCommand.toLowerCase()){
-                                        case "a":
+                                    keepDiceMenuCommand = scanner.nextInt();
+
+                                    switch (keepDiceMenuCommand){
+                                        case 1:
                                             System.out.println("You kept 2");
                                             break;
-                                        case "b":
+                                        case 2:
                                             System.out.println("You kept 1");
                                             break;
-                                        case "c":
+                                        case 3:
                                             System.out.println("You kept 5");
                                             break;
-                                        case "d":
+                                        case 4:
                                             System.out.println("You kept 3");
                                             break;
-                                        case "e":
+                                        case 5:
                                             System.out.println("You kept 2");
                                             break;
-                                        case "k":
-                                            System.out.println("Back...");
+                                        case 6:
+                                            System.out.println("KEEP DICE...");
                                             break;
                                         default:
                                             System.out.println("Command not found");
                                     }
 
-                                } while (keepDiceMenuCommand.equalsIgnoreCase("k"));
+                                } while (keepDiceMenuCommand != 6);
 
                                 break;
                             case 2:
