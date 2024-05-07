@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         ArrayList<Book> libraryInventory = new ArrayList<>();
 
         // Statically: Insert data via the application
