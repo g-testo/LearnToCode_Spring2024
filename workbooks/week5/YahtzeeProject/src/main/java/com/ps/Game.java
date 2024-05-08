@@ -25,13 +25,24 @@ public class Game {
         return this.currentRoll;
     }
 
-    public void removeDie(int index){
-        // Guard Clause
+    public void rerollDice(boolean[] diceToReroll){
         try{
+
+
+//           diceToReroll: [true,false,true, true, false]
+//           Current Roll: [1,6,3,4,2]
+
+
+//            for(int i=0;i<diceToReroll.length;i++){
+//                if(diceToReroll[i]){
+//                    game.removeDie(i);
+//                }
+//            }
+
+//          game.rollDice();
             this.currentRoll.remove(index);
         } catch (IndexOutOfBoundsException e){
             System.out.println("Can't remove that die");
-//            e.printStackTrace();
         }
     }
 }

@@ -93,20 +93,11 @@ public class Main {
 
 
         // -- Code! --
+//
+        UserInterface.display();
+        1 3 5
 
-
-//        Game game = new Game();
-//        ArrayList<Integer> newRoll = game.getCurrentRoll();
-//        System.out.println(newRoll);
-
-        ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(200);
-        numbers.remove(1);
-
-//            UserInterface.display();
-
+        3 4 6 4 3
         // -- Code! --
-
-
     }
 }
