@@ -109,7 +109,7 @@ public class UserInterface {
                     diceToReroll[4] = !diceToReroll[4];
                     break;
                 case 6:
-                    game.rerollDice(diceToReroll);
+                    game.rollDice(diceToReroll);
                     break;
                 default:
                     System.out.println("Command not found");

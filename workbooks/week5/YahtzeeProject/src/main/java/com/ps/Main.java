@@ -93,11 +93,9 @@ public class Main {
 
 
         // -- Code! --
-//
-        UserInterface.display();
-        1 3 5
 
-        3 4 6 4 3
+        UserInterface.display();
+
         // -- Code! --
     }
 }

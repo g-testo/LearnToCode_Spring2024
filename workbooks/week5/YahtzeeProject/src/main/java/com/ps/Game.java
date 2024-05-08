@@ -16,33 +16,29 @@ public class Game {
         int diceToRoll = 5 - numOfDice;
 
         for(int i=0;i<diceToRoll;i++){
-            int randomNum = (int)(Math.random() * 6) + 1;
+            int randomNum = generateNewDieValue();
             this.currentRoll.add(randomNum);
         }
     }
 
-    public ArrayList<Integer> getCurrentRoll() {
-        return this.currentRoll;
+    public void rollDice(boolean[] diceToReroll){
+
+        for(int i=0;i<this.currentRoll.size();i++){
+
+            if(diceToReroll[i]){
+                int newDieValue = generateNewDieValue();
+                this.currentRoll.set(i, newDieValue);
+            }
+
+        }
+
     }
 
-    public void rerollDice(boolean[] diceToReroll){
-        try{
+    public static int generateNewDieValue(){
+        return (int)(Math.random() * 6) + 1;
+    }
 
-
-//           diceToReroll: [true,false,true, true, false]
-//           Current Roll: [1,6,3,4,2]
-
-
-//            for(int i=0;i<diceToReroll.length;i++){
-//                if(diceToReroll[i]){
-//                    game.removeDie(i);
-//                }
-//            }
-
-//          game.rollDice();
-            this.currentRoll.remove(index);
-        } catch (IndexOutOfBoundsException e){
-            System.out.println("Can't remove that die");
-        }
+    public ArrayList<Integer> getCurrentRoll() {
+        return this.currentRoll;
     }
 }
