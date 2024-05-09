@@ -65,6 +65,11 @@ public class UserInterface {
                 case 3:
                     System.out.println("The round is over, please choose a category...");
                     // Show categories to choose from
+
+
+
+                    // Name - Score
+                    // Full House - 0
                     break;
                 case 4:
                     System.out.println("Back to the main menu...");
