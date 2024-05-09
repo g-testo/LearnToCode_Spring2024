@@ -64,12 +64,16 @@ public class UserInterface {
                     break;
                 case 3:
                     System.out.println("The round is over, please choose a category...");
-                    // Show categories to choose from
-
-
-
+                    // Show combinations to choose from
+                    // 31212
                     // Name - Score
-                    // Full House - 0
+                    // 1) Ones - 2      7) Three of a Kind - 0
+                    // 2) Two - 4       8) Four of a Kind - 0
+                    // 3) Threes- 3
+
+                    // Three Of A Kind
+
+
                     break;
                 case 4:
                     System.out.println("Back to the main menu...");

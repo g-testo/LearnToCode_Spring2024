@@ -3,39 +3,66 @@ package com.ps;
 import java.util.ArrayList;
 
 public class Combination {
-    private String name;
-    private String section;
+    private int id;
+    private String displayName;
+
+    public Combination(int id, String displayName) {
+        this.id = id;
+        this.displayName = displayName;
+    }
 
     public int calculateScore(ArrayList dice){
-        switch (this.name){
-            case "ones":
+        switch (this.id){
+            case 1:
+                // Ones
                 break;
-            case "twos":
+            case 2:
+                // Twos
                 break;
-            case "threes":
+            case 3:
+                // Threes
                 break;
-            case "fours":
+            case 4:
+                // Fours
                 break;
-            case "fives":
+            case 5:
+                // Fives
                 break;
-            case "sixes":
+            case 6:
+                // Sixes
                 break;
-            case "threeOfAKind":
+            case 7:
                 break;
-            case "fourOfAKind":
+            case 8:
                 break;
-            case "fullHouse":
+            case 9:
                 break;
-            case "smallStraight":
+            case 10:
                 break;
-            case "largeStraight":
+            case 11:
                 break;
-            case "chance":
+            case 12:
                 break;
-            case "yahtzee":
+            case 13:
                 break;
             default:
         }
         return 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }
