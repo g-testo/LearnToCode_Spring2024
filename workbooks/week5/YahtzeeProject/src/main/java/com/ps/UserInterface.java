@@ -1,5 +1,6 @@
 package com.ps;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -64,6 +65,24 @@ public class UserInterface {
                     break;
                 case 3:
                     System.out.println("The round is over, please choose a category...");
+
+                    ArrayList<Combination> upper = game.getUpperCombinations();
+                    ArrayList<Combination> lower = game.getLowerCombinations();
+
+                    for(int i = 0;i<upper.size();i++){
+                        Combination upperCombo = upper.get(i);
+                        Combination lowerCombo = lower.get(i);
+
+                        System.out.printf("%d) %-6s- 0      %2d) %-16s - 0\n",
+                                upperCombo.getId(),
+                                upperCombo.getDisplayName(),
+                                lowerCombo.getId(),
+                                lowerCombo.getDisplayName()
+                        );
+                    }
+
+
+
                     // Show combinations to choose from
                     // 31212
                     // Name - Score
