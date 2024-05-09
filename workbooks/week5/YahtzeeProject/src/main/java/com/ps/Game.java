@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game {
+    private int currentRound;
+    private int currentRerollsLeft;
+
+
     private ArrayList<Integer> currentRoll = new ArrayList<>();
 
     private ArrayList<Combination> upperCombinations = new ArrayList<>();
@@ -17,8 +21,11 @@ public class Game {
     //
 
     public Game(){
-        rollDice();
         populateCombinations();
+
+        this.currentRound = 1;
+        this.currentRerollsLeft = 2;
+        rollDice();
     }
 
     private void populateCombinations(){
@@ -56,6 +63,12 @@ public class Game {
     }
 
     public void rollDice(boolean[] diceToReroll){
+        this.currentRerollsLeft--;
+
+        if(this.currentRerollsLeft < 0){
+            System.out.println("No rerolls left");
+            return;
+        }
 
         for(int i=0;i<this.currentRoll.size();i++){
 
@@ -70,6 +83,19 @@ public class Game {
 
     public static int generateNewDieValue(){
         return (int)(Math.random() * 6) + 1;
+    }
+
+    public void startNewRound(){
+        this.currentRound++;
+        this.currentRerollsLeft = 2;
+    }
+
+    public int getCurrentRound(){
+        return this.currentRound;
+    }
+
+    public int getCurrentRerollsLeft(){
+        return this.currentRerollsLeft;
     }
 
     public ArrayList<Integer> getCurrentRoll() {

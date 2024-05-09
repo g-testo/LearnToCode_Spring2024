@@ -1,8 +1,6 @@
 package com.ps;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -50,20 +48,20 @@ public class UserInterface {
             System.out.printf("You rolled the following: %s\n", strNumbers);
             System.out.println("What would you like to do next?");
             System.out.println("1) Choose dice to reroll");
-            System.out.println("2) Reroll unsaved dice");
-            System.out.println("3) End round and choose category");
-            System.out.println("4) BACK");
+            System.out.println("2) End round and choose category");
+            System.out.println("3) BACK");
 
             subMenuCommand = scanner.nextInt();
 
             switch (subMenuCommand) {
                 case 1:
-                    handleRerollDice();
+                    if(game.getCurrentRerollsLeft() > 0){
+                        handleRerollDice();
+                    } else {
+                        System.out.println("No rerolls left");
+                    }
                     break;
                 case 2:
-                    System.out.println("You rerolled");
-                    break;
-                case 3:
                     System.out.println("The round is over, please choose a category...");
 
                     ArrayList<Combination> upper = game.getUpperCombinations();
@@ -72,35 +70,25 @@ public class UserInterface {
                     for(int i = 0;i<upper.size();i++){
                         Combination upperCombo = upper.get(i);
                         Combination lowerCombo = lower.get(i);
+                        ArrayList<Integer> currentRoll = game.getCurrentRoll();
 
-                        System.out.printf("%d) %-6s- 0      %2d) %-16s - 0\n",
+                        System.out.printf("%d) %-6s- %-2d      %2d) %-16s - %-2d\n",
                                 upperCombo.getId(),
                                 upperCombo.getDisplayName(),
+                                upperCombo.calculateScore(currentRoll),
                                 lowerCombo.getId(),
-                                lowerCombo.getDisplayName()
+                                lowerCombo.getDisplayName(),
+                                lowerCombo.calculateScore(currentRoll)
                         );
                     }
-
-
-
-                    // Show combinations to choose from
-                    // 31212
-                    // Name - Score
-                    // 1) Ones - 2      7) Three of a Kind - 0
-                    // 2) Two - 4       8) Four of a Kind - 0
-                    // 3) Threes- 3
-
-                    // Three Of A Kind
-
-
                     break;
-                case 4:
+                case 3:
                     System.out.println("Back to the main menu...");
                     break;
                 default:
                     System.out.println("Command not found");
             }
-        } while (subMenuCommand != 4);
+        } while (subMenuCommand != 3);
     }
 
     private static void handleRerollDice(){
