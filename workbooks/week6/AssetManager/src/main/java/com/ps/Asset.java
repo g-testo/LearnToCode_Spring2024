@@ -1,6 +1,6 @@
 package com.ps;
 
-public class Asset {
+public abstract class Asset {
     private String description;
     private String dateAcquired;
     private double originalCost;
@@ -10,6 +10,8 @@ public class Asset {
         this.dateAcquired = dateAcquired;
         this.originalCost = originalCost;
     }
+
+//    public abstract double getValue();
 
     public double getValue(){
         return this.originalCost;
