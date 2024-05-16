@@ -1,13 +1,11 @@
 package com.ps;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class DealershipFileManager {
 
-    public Dealership getDealership(){
-        try{
+    public static Dealership getDealership() {
+        try {
             BufferedReader bufReader = new BufferedReader(new FileReader("DB_Dealership.csv"));
 
             String firstLine = bufReader.readLine();
@@ -21,7 +19,7 @@ public class DealershipFileManager {
 
             String input;
 
-            while((input = bufReader.readLine()) != null){
+            while ((input = bufReader.readLine()) != null) {
 
                 String[] splitInput = input.split("\\|");
                 int vin = Integer.parseInt(splitInput[0]);
@@ -37,14 +35,42 @@ public class DealershipFileManager {
 
                 dealership.addVehicle(vehicle);
             }
+
+            bufReader.close();
+
             return dealership;
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public void saveDealership(Dealership dealership){
+    public static void saveDealership(Dealership dealership) {
+        try {
+            BufferedWriter bufWriter = new BufferedWriter(new FileWriter("DB_Dealership.csv"));
 
+            bufWriter.write(String.format("%s|%s|%s\n",
+                    dealership.getName(),
+                    dealership.getAddress(),
+                    dealership.getPhone()
+            ));
+
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+                bufWriter.write(String.format("%d|%d|%s|%s|%s|%s|%d|%f\n",
+                        vehicle.getVin(),
+                        vehicle.getYear(),
+                        vehicle.getMake(),
+                        vehicle.getModel(),
+                        vehicle.getVehicleType(),
+                        vehicle.getColor(),
+                        vehicle.getOdometer(),
+                        vehicle.getPrice()
+                ));
+            }
+
+            bufWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
