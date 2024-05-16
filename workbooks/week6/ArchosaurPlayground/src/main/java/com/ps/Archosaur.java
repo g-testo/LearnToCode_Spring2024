@@ -3,7 +3,7 @@ package com.ps;
 public abstract class Archosaur {
     private String species;
     private int numOfLegs;
-    private int energy;
+    protected int energy;
 
     public Archosaur(String species, int numOfLegs) {
         this.species = species;
