@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,55 +29,58 @@ public class Main {
                 )
         );
 
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Please provide me a first or last name: ");
-//
-//        String name = scanner.nextLine();
-//
-//        for(Person person: people){
-//            if(
-//                    containsIgnoreCase(person.getFirstName(), name) ||
-//                    containsIgnoreCase(person.getLastName(), name)
-//            ){
-//                System.out.printf(
-//                        "First Name: %s, Last Name: %s, Age: %d\n",
-//                        person.getFirstName(),
-//                        person.getLastName(),
-//                        person.getAge()
-//                );
-//            }
-//        }
+        String str = "dslfkj";
 
-//        float totalAges = 0;
-//        for(Person person: people){
-//            totalAges+=person.getAge();
-//        }
-//        System.out.println(totalAges);
-//        System.out.println(people.size());
-//
-//        float avg = totalAges/people.size();
-//
-//        System.out.println(avg);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please provide me a first or last name: ");
 
-//        int oldest = people.get(0).getAge();
-//        for(int i=1;i<people.size();i++){
-//            int currentAge = people.get(i).getAge();
-//            if(currentAge > oldest){
-//                oldest = currentAge;
-//            }
-//        }
-//        System.out.println(oldest);
+        String name = scanner.nextLine();
 
-        int youngest = people.get(0).getAge();
-        for(int i=1;i<people.size();i++){
-            int currentAge = people.get(i).getAge();
-            if(currentAge < youngest){
-                youngest = currentAge;
+        for(Person person: people){
+            if(
+                    containsIgnoreCase(person.getFirstName(), name) ||
+                    containsIgnoreCase(person.getLastName(), name)
+            ){
+                System.out.printf(
+                        "First Name: %s, Last Name: %s, Age: %d\n",
+                        person.getFirstName(),
+                        person.getLastName(),
+                        person.getAge()
+                );
             }
         }
-        System.out.println(youngest);
+
+        float totalAges = 0;
+        for(Person person: people){
+            totalAges+=person.getAge();
+        }
+        System.out.println(totalAges);
+        System.out.println(people.size());
+
+        float avg = totalAges/people.size();
+
+        System.out.println(avg);
+
+        int oldest = people.get(0).getAge();
+        for(int i=1;i<people.size();i++){
+            int currentAge = people.get(i).getAge();
+            if(currentAge > oldest){
+                oldest = currentAge;
+            }
+        }
+        System.out.println(oldest);
+
+        Person youngest = people.get(0);
+        for(int i=1;i<people.size();i++){
+            Person currentPerson = people.get(i);
+            if(currentPerson.getAge() < youngest.getAge()){
+                youngest = currentPerson;
+            }
+        }
+        System.out.println(youngest.getAge());
     }
-    public static boolean containsIgnoreCase(String name1, String name2){
+
+    public static boolean containsIgnoreCase(String name1, String name2) {
         return name1.toLowerCase().contains(name2.toLowerCase());
     }
 }
