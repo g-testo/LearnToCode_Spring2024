@@ -3,9 +3,11 @@ package com.ps;
 //Class.forName("com.mysql.cj.jdbc.Driver");
 
 import java.sql.*;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         } catch (Exception e) {
@@ -18,13 +20,17 @@ public class Main {
         try {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/sakila",
-                    "root",
-                    "12345678");
+                    args[0],
+                    args[1]);
             // create statementÒ
             // the statement is tied to the open connection
-            Statement statement = connection.createStatement();
+            int userInput = 103;
+            String query = "SELECT * FROM city WHERE country_id = 103";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+//            statement.setInt(1, userInput);
             // define your query
-            String query = "SELECT city FROM city WHERE country_id=103";
+
             // 2. Execute your query
             ResultSet results = statement.executeQuery(query);
             // process the results
