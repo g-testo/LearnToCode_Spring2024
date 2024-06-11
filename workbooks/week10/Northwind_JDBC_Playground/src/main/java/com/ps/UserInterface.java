@@ -1,14 +1,25 @@
 package com.ps;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 import java.sql.*;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
-    public static void init(){
+    private static NorthwindDataManager dataManager;
+    public static void init(String[] args){
+        BasicDataSource basicDataSource = new BasicDataSource();
 
+        basicDataSource.setUrl("jdbc:mysql://localhost:3306/northwind");
+        basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        basicDataSource.setUsername(args[0]);
+        basicDataSource.setPassword(args[1]);
+
+        dataManager = new NorthwindDataManager(basicDataSource);
     }
-    public static void display(){
-        init();
+    public static void display(String[] args){
+        init(args);
         showMainMenu();
     }
 
@@ -30,13 +41,14 @@ public class UserInterface {
 
             switch(command){
                 case 1:
-
+                    List products = dataManager.getAllProducts();
+                    System.out.println(products);
                     break;
                 case 2:
-
+                    // DataManager get all categories
                     break;
                 case 3:
-
+                    // DataManager get all orders
                     break;
                 case 0:
                     System.out.println("Exiting...");
