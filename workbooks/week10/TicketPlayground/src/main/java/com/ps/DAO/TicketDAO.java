@@ -1,0 +1,44 @@
+package com.ps.DAO;
+
+import com.ps.models.Ticket;
+import com.ps.models.User;
+import org.apache.commons.dbcp2.BasicDataSource;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+public class TicketDAO {
+    private BasicDataSource dataSource;
+
+    public TicketDAO(BasicDataSource basicDataSource){
+        this.dataSource = basicDataSource;
+    }
+
+    public List<Ticket> getAllTickets(){
+        List<Ticket> tickets = new ArrayList<>();
+        try(
+                Connection connection = dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ticket");
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ){
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String eventName = resultSet.getString("event_name");
+                float price = resultSet.getFloat("price");
+                String type = resultSet.getString("type");
+
+                Ticket ticket = new Ticket(id, eventName, price, type);
+                tickets.add(ticket);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            return tickets;
+        }
+    }
+}
