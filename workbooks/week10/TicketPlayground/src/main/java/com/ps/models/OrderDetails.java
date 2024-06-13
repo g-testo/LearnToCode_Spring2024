@@ -7,6 +7,13 @@ public class OrderDetails {
     private int quantity;
     private boolean isRedeemed;
 
+    public OrderDetails(int userId, int ticketId, int quantity, boolean isRedeemed) {
+        this.userId = userId;
+        this.ticketId = ticketId;
+        this.quantity = quantity;
+        this.isRedeemed = isRedeemed;
+    }
+
     public OrderDetails(int id, int userId, int ticketId, int quantity, boolean isRedeemed) {
         this.id = id;
         this.userId = userId;
