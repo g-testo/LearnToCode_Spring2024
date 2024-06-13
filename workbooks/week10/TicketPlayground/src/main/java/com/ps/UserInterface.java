@@ -27,6 +27,27 @@ public class UserInterface {
     public static void display(String[] args){
         init(args);
 
+        // Register - Create a new account
+            // What's your first name?
+            // What's your last name?
+            // Save user
+        // Find account
+            // Choose a user
+            // Purchase a ticket
+                // Choose what ticket you would like to purchase
+                // How many?
+                // Are you at the event?
+                // Save order_detail
+            // Manage your account
+                // Show user details
+                // View all your orders
+                // Change my first or last name
+                // Delete my account
+        // Admin
+            // CRUD on user
+            // CRUD on ticket
+            // CRUD on order_details
+
         System.out.println("What would you like to do?");
         System.out.println("1) Select User");
         System.out.println("2) Register");
