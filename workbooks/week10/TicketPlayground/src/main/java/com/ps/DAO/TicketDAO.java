@@ -1,5 +1,6 @@
 package com.ps.DAO;
 
+import com.ps.DAO.interfaces.TicketInt;
 import com.ps.models.Ticket;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -7,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketDAO {
+public class TicketDAO implements TicketInt {
     private BasicDataSource dataSource;
 
     public TicketDAO(BasicDataSource basicDataSource){

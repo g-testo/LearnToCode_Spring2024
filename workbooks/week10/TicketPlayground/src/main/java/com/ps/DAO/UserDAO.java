@@ -1,5 +1,6 @@
 package com.ps.DAO;
 
+import com.ps.DAO.interfaces.UserInt;
 import com.ps.models.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -10,13 +11,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
+public class UserDAO implements UserInt {
     private BasicDataSource dataSource;
 
     public UserDAO(BasicDataSource basicDataSource){
         this.dataSource = basicDataSource;
     }
-
+    @Override
     public List<User> getAllUsers(){
         List<User> users = new ArrayList<>();
         try(
@@ -39,7 +40,7 @@ public class UserDAO {
             return users;
         }
     }
-
+    @Override
     public User getOneUser(int id){
         User user = null;
         try(
@@ -65,6 +66,7 @@ public class UserDAO {
         }
         return user;
     }
+    @Override
 
     public int createUser(User user){
         int generatedId = -1;
@@ -90,16 +92,16 @@ public class UserDAO {
         }
         return generatedId;
     }
-
-    public void updateUser(int id, String firstName, String lastName){
+    @Override
+    public void updateUser(int id, User user){
         try(
                 Connection connection = dataSource.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "UPDATE user SET first_name = ?, last_name = ? WHERE id = ?"
                 );
         ){
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
             preparedStatement.setInt(3, id);
 
             preparedStatement.executeUpdate();
@@ -108,7 +110,7 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
-
+    @Override
     public void deleteUser(int id){
         try(
                 Connection connection = dataSource.getConnection();
