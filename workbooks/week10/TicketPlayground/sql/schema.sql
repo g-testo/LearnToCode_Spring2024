@@ -107,3 +107,21 @@ INSERT INTO order_details(`user_id`, `ticket_id`, `quantity`, `is_redeemed`) VAL
 INSERT INTO order_details(`user_id`, `ticket_id`, `quantity`, `is_redeemed`) VALUES(10, 18, 2, true);
 INSERT INTO order_details(`user_id`, `ticket_id`, `quantity`, `is_redeemed`) VALUES(11, 4, 5, false);
 INSERT INTO order_details(`user_id`, `ticket_id`, `quantity`, `is_redeemed`) VALUES(12, 7, 3, false);
+
+
+DROP PROCEDURE IF EXISTS `FilterNameAndPrice`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `FilterNameAndPrice`(in AtEventName varchar(5), in AtPrice float)
+BEGIN
+
+SELECT * FROM ticket
+	WHERE (event_name LIKE AtEventName)
+    AND price < AtPrice
+    ORDER BY price, event_name
+    LIMIT 2;
+
+END $$
+
+
