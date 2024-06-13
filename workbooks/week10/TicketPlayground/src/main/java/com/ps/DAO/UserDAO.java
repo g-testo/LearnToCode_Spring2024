@@ -66,7 +66,7 @@ public class UserDAO {
         return user;
     }
 
-    public int createUser(String firstName, String lastName){
+    public int createUser(User user){
         int generatedId = -1;
         try(
                 Connection connection = dataSource.getConnection();
@@ -75,8 +75,8 @@ public class UserDAO {
                         Statement.RETURN_GENERATED_KEYS
                 );
         ){
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
             preparedStatement.executeUpdate();
 
             try(ResultSet keys = preparedStatement.getGeneratedKeys()){
@@ -118,8 +118,7 @@ public class UserDAO {
         ){
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-        }
-        catch(Exception e){
+        } catch(Exception e){
             e.printStackTrace();
         }
     }

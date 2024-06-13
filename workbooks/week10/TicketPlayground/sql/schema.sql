@@ -110,18 +110,14 @@ INSERT INTO order_details(`user_id`, `ticket_id`, `quantity`, `is_redeemed`) VAL
 
 
 DROP PROCEDURE IF EXISTS `FilterNameAndPrice`;
-
 DELIMITER $$
-
 CREATE PROCEDURE `FilterNameAndPrice`(in AtEventName varchar(5), in AtPrice float)
 BEGIN
-
 SELECT * FROM ticket
 	WHERE (event_name LIKE AtEventName)
     AND price < AtPrice
     ORDER BY price, event_name
     LIMIT 2;
-
 END $$
 
 
