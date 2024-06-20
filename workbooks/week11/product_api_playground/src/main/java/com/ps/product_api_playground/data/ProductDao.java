@@ -5,7 +5,7 @@ import com.ps.product_api_playground.models.Product;
 import java.util.List;
 
 public interface ProductDao {
-    List<Product> getAllProducts();
+    List<Product> getAllProducts(String name,  int categoryId);
     Product getProductById(int id);
     Product createProduct(Product product);
     void updateProduct(int id, Product product);

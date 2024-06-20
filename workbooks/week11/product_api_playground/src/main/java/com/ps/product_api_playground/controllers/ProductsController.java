@@ -16,10 +16,13 @@ public class ProductsController {
         this.mySqlProductsDao = mySqlProductsDao;
     }
 
-    // Filter product by name
+    // Filter product by name /products?name=fa
     @GetMapping("/products")
-    public List<Product> getProducts(){
-        return mySqlProductsDao.getAllProducts();
+    public List<Product> getProducts(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) int categoryId
+    ){
+        return mySqlProductsDao.getAllProducts(name, categoryId);
     }
 
     @GetMapping("/products/{id}")

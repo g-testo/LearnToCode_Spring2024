@@ -23,16 +23,22 @@ public class MySqlProductsDao implements ProductDao {
     }
 
     @Override
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts(String name, int categoryId){
         List<Product> products = new ArrayList<>();
 
-        String query = "SELECT * FROM products";
+        String query = "SELECT * FROM products WHERE ProductName LIKE ? AND (CategoryID = ? OR ? = -1)";
+
+        int categoryToSeach = categoryId == 0 ? -1 : categoryId;
+        String nameToSearch = name == null ? "" : name;
 
         try(
                 Connection connection = dataSource.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
         ){
+            preparedStatement.setString(1, "%" + nameToSearch + "%");
+            preparedStatement.setInt(2, categoryToSeach);
+            preparedStatement.setInt(3, categoryToSeach);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
                 Product product = mapProduct(resultSet);
