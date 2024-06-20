@@ -37,7 +37,7 @@ public class ProductsController {
         mySqlProductsDao.updateProduct(id, product);
     }
 
-    @DeleteMapping("products/{id}")
+    @DeleteMapping("/products/{id}")
     public void removeProduct(@PathVariable int id){
         mySqlProductsDao.deleteProduct(id);
     }

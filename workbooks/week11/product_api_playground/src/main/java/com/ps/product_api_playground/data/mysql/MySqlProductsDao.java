@@ -106,7 +106,7 @@ public class MySqlProductsDao implements ProductDao {
 
     @Override
     public void updateProduct(int id, Product product) {
-        String query = "UPDATE products SET ProductName=?, CategoryId=?, UnitPrice=? WHERE id=?";
+        String query = "UPDATE products SET ProductName=?, CategoryId=?, UnitPrice=? WHERE ProductId=?";
 
         try(
                 Connection connection = dataSource.getConnection();
@@ -127,7 +127,7 @@ public class MySqlProductsDao implements ProductDao {
 
     @Override
     public void deleteProduct(int id) {
-        String query = "DELETE products WHERE id=?";
+        String query = "DELETE FROM products WHERE ProductId=?";
 
         try(
             Connection connection = dataSource.getConnection();
