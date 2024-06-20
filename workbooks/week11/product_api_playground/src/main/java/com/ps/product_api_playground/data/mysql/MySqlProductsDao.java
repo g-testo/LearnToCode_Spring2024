@@ -77,17 +77,69 @@ public class MySqlProductsDao implements ProductDao {
 
     @Override
     public Product createProduct(Product product) {
+
+        String query = "INSERT INTO products(ProductName, CategoryID, UnitPrice) VALUES (?,?,?)";
+
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+        ) {
+            preparedStatement.setString(1, product.getProductName());
+            preparedStatement.setInt(2, product.getCategoryId());
+            preparedStatement.setFloat(3, product.getUnitPrice());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if(rowsAffected > 0){
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if(generatedKeys.next()){
+                    int productId = generatedKeys.getInt(1);
+                    return getProductById(productId);
+                }
+            }
+
+        }catch(SQLException sql){
+            sql.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void updateProduct(int id, Product product) {
+        String query = "UPDATE products SET ProductName=?, CategoryId=?, UnitPrice=? WHERE id=?";
 
+        try(
+                Connection connection = dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ){
+            preparedStatement.setString(1, product.getProductName());
+            preparedStatement.setInt(2, product.getCategoryId());
+            preparedStatement.setFloat(3, product.getUnitPrice());
+
+            preparedStatement.setInt(4, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException sql){
+            sql.printStackTrace();
+        }
     }
 
     @Override
     public void deleteProduct(int id) {
+        String query = "DELETE products WHERE id=?";
 
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ){
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch(SQLException sql){
+            sql.printStackTrace();
+        }
     }
 
     private Product mapProduct(ResultSet resultSet) throws SQLException {
